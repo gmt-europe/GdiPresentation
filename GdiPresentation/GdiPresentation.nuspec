@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GdiPresentation</id>
+    <version>1.0.0.0</version>
+    <title>GDI+ Presentation</title>
+    <authors>GMT Europe B.V.</authors>
+    <owners>GMT Europe B.V.</owners>
+    <licenseUrl>http://www.gnu.org/licenses/lgpl-3.0.txt</licenseUrl>
+    <projectUrl>http://github.com/gmt-europe/GdiPresentation</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>WPF like Windows Forms presentation control.</description>
+    <copyright>GMT Europe B.V. © 2012-2014</copyright>
+    <tags>wpf gdi+</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\GdiPresentation-2.dll" target="lib\net20" />
+    <file src="bin\Release\GdiPresentation-4.dll" target="lib\net40" />
+    <file src="bin\Release\GdiPresentation-4.dll" target="lib\net40-client" />
+  </files>
+</package>

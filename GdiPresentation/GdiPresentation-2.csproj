@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B88BD03-5A9A-4F45-9729-31DDFACFB137}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GdiPresentation</RootNamespace>
+    <AssemblyName>GdiPresentation-2</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_NET_2</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;_NET_2</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Border.cs" />
+    <Compile Include="Brush.cs" />
+    <Compile Include="ButtonInput.cs" />
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Collection.cs" />
+    <Compile Include="CollectionDebugView.cs" />
+    <Compile Include="Color.cs" />
+    <Compile Include="ColumnDefinition.cs" />
+    <Compile Include="ContainerElement.cs" />
+    <Compile Include="ContentElement.cs" />
+    <Compile Include="ControlHost.cs" />
+    <Compile Include="ControlUtil.cs" />
+    <Compile Include="CornerRadius.cs" />
+    <Compile Include="Cursor.cs" />
+    <Compile Include="CustomScrollControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DefinitionBase.cs" />
+    <Compile Include="DefinitionCollection.cs" />
+    <Compile Include="Delegates.cs" />
+    <Compile Include="Element.AttachedProperties.cs" />
+    <Compile Include="Element.cs" />
+    <Compile Include="ElementCollection.cs" />
+    <Compile Include="ElementControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ElementEnumerable.cs" />
+    <Compile Include="ElementEventArgs.cs" />
+    <Compile Include="ElementHost.cs" />
+    <Compile Include="ElementPaintEventHandler.cs" />
+    <Compile Include="ElementStatistics.cs" />
+    <Compile Include="ElementStatisticsEvent.cs" />
+    <Compile Include="ElementStatisticsEventType.cs" />
+    <Compile Include="ElementUtil.cs" />
+    <Compile Include="FontCacheManager.cs" />
+    <Compile Include="FontStyle.cs" />
+    <Compile Include="GetChildAtPointSkip.cs" />
+    <Compile Include="Grid.cs" />
+    <Compile Include="GridLength.cs" />
+    <Compile Include="GridUnitType.cs" />
+    <Compile Include="HeaderedContainerElement.cs" />
+    <Compile Include="HorizontalAlignment.cs" />
+    <Compile Include="HslColor.cs" />
+    <Compile Include="IControlHost.cs" />
+    <Compile Include="Image.cs" />
+    <Compile Include="IntUtil.cs" />
+    <Compile Include="LayoutManager.cs" />
+    <Compile Include="LayoutQueue.cs" />
+    <Compile Include="LinearGradientMode.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="MouseButtons.cs" />
+    <Compile Include="MouseEventArgs.cs" />
+    <Compile Include="NamedObject.cs" />
+    <Compile Include="ObjectUtil.cs" />
+    <Compile Include="Orientation.cs" />
+    <Compile Include="PaintEventHandler.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rect.cs" />
+    <Compile Include="ResolveCursorEventArgs.cs" />
+    <Compile Include="RowDefinition.cs" />
+    <Compile Include="Run.cs" />
+    <Compile Include="RunCollection.cs" />
+    <Compile Include="SEH.cs" />
+    <Compile Include="Size.cs" />
+    <Compile Include="StackPanel.cs" />
+    <Compile Include="StaticAlignment.cs" />
+    <Compile Include="StaticPanel.cs" />
+    <Compile Include="Stretch.cs" />
+    <Compile Include="StretchDirection.cs" />
+    <Compile Include="TextBlock.cs" />
+    <Compile Include="TextBoxInput.cs" />
+    <Compile Include="TextMeasureCache.cs" />
+    <Compile Include="TextTrimming.cs" />
+    <Compile Include="Thickness.cs" />
+    <Compile Include="TreeExpander.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="VerticalAlignment.cs" />
+    <Compile Include="Visibility.cs" />
+    <Compile Include="VisualElement.cs" />
+    <Compile Include="VisualElement.ListViewHeaderRenderer.cs" />
+    <Compile Include="VisualMode.cs" />
+    <Compile Include="VisualStyle.cs" />
+    <Compile Include="ScrollBarVisibility.cs" />
+    <Compile Include="Win32\ExternDll.cs" />
+    <Compile Include="Win32\NativeMethods.cs" />
+    <Compile Include="WordCache.cs" />
+    <Compile Include="WordClip.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
