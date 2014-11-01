@@ -21,20 +21,27 @@ namespace GdiPresentation
 
         public Link()
         {
-            FontStyle = GdiPresentation.FontStyle.Underline;
-            ForeColor = Color.Blue;
-            Cursor = Cursor.Hand;
+            SetDefaults();
         }
 
         public Link(string text)
             : base(text)
         {
+            SetDefaults();
         }
 
         public Link(string text, Uri target)
             : this(text)
         {
+            SetDefaults();
             Target = target;
+        }
+
+        private void SetDefaults()
+        {
+            FontStyle = GdiPresentation.FontStyle.Underline;
+            ForeColor = Color.Blue;
+            Cursor = Cursor.Hand;
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
