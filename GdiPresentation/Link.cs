@@ -46,25 +46,38 @@ namespace GdiPresentation
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            e.PreventBubble();
-
             if (e.Button == MouseButtons.Left)
+            {
+                e.PreventBubble();
+
                 Capture = true;
+            }
+            else
+            {
+                base.OnMouseDown(e);
+            }
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            e.PreventBubble();
-
-            if (Capture && IsMouseDirectlyOver)
+            if (Capture)
             {
-                if (Target != null)
-                    SEH.SinkExceptions(() => Process.Start(Target.ToString()));
+                e.PreventBubble();
 
-                OnClick(EventArgs.Empty);
+                if (IsMouseDirectlyOver)
+                {
+                    if (Target != null)
+                        SEH.SinkExceptions(() => Process.Start(Target.ToString()));
+
+                    OnClick(EventArgs.Empty);
+                }
+
+                Capture = false;
             }
-
-            Capture = false;
+            else
+            {
+                base.OnMouseUp(e);
+            }
         }
     }
 }

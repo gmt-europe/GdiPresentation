@@ -56,6 +56,15 @@ namespace GdiPresentation
             set { base.Text = value; }
         }
 
+        public event PreferredSizeChangedEventHandler PreferredSizeChanged;
+
+        protected virtual void OnPreferredSizeChanged(PreferredSizeChangedEventArgs e)
+        {
+            var ev = PreferredSizeChanged;
+            if (ev != null)
+                ev(this, e);
+        }
+
         public ElementControl()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.Selectable, true);
@@ -267,6 +276,8 @@ namespace GdiPresentation
                 ElementStatistics.AddEvent(ElementStatisticsEventType.Arrange | (force ? ElementStatisticsEventType.Forced : 0), stopwatch.Elapsed);
 
             var displaySize = _host.Size;
+
+            OnPreferredSizeChanged(new PreferredSizeChangedEventArgs(displaySize));
 
             if (!canHScroll)
                 displaySize.Width = Math.Min(displaySize.Width, clientSize.Width);
