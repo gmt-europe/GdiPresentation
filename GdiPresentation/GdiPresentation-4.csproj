@@ -101,7 +101,6 @@
     <Compile Include="Orientation.cs" />
     <Compile Include="PaintEventHandler.cs" />
     <Compile Include="Point.cs" />
-    <Compile Include="PreferredSizeChangedEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rect.cs" />
     <Compile Include="ResolveCursorEventArgs.cs" />

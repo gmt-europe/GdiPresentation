@@ -42,10 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdjustForScrollBarsDemo.cs" />
+    <Compile Include="AutoSizeDemoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AutoSizeDemoControl.Designer.cs">
+      <DependentUpon>AutoSizeDemoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BasicRenderingDemo.cs" />
     <Compile Include="ChangeVisibilityDemo.cs" />
     <Compile Include="ClippingDemo.cs" />
     <Compile Include="ComplexLayoutWithManyElements.cs" />
+    <Compile Include="AutoSizeDemo.cs" />
     <Compile Include="CornerRadiusDemo.cs" />
     <Compile Include="Demo.cs" />
     <Compile Include="DraggingDemo.cs" />
@@ -78,6 +85,9 @@
     <Compile Include="TextDemo.cs" />
     <Compile Include="TreeExpanderDemo.cs" />
     <Compile Include="TypeUtil.cs" />
+    <EmbeddedResource Include="AutoSizeDemoControl.resx">
+      <DependentUpon>AutoSizeDemoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FocusDemoControl.resx">
       <DependentUpon>FocusDemoControl.cs</DependentUpon>
     </EmbeddedResource>

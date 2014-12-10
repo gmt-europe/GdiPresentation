@@ -28,7 +28,11 @@ namespace GdiPresentation
         public Element Content
         {
             get { return _host.Content; }
-            set { _host.Content = value; }
+            set
+            {
+                _host.Content = value;
+                MeasureArrange(true);
+            }
         }
 
         [DefaultValue(ScrollBars.None)]
@@ -56,18 +60,31 @@ namespace GdiPresentation
             set { base.Text = value; }
         }
 
-        public event PreferredSizeChangedEventHandler PreferredSizeChanged;
-
-        protected virtual void OnPreferredSizeChanged(PreferredSizeChangedEventArgs e)
+        [Category("Layout")]
+        [DefaultValue(false)]
+        [RefreshProperties(RefreshProperties.All)]
+        [Localizable(true)]
+        [Browsable(true)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public new bool AutoSize
         {
-            var ev = PreferredSizeChanged;
-            if (ev != null)
-                ev(this, e);
+            get { return base.AutoSize; }
+            set
+            {
+                if (AutoSize != value)
+                {
+                    base.AutoSize = value;
+                    AdjustSize();
+                }
+            }
         }
 
         public ElementControl()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.Selectable, true);
+
+            AutoSize = false;
 
             _host = new ElementHost(this);
         }
@@ -241,7 +258,7 @@ namespace GdiPresentation
             var desiredSize = _host.DesiredSize;
             var finalSize = desiredSize;
 
-            if (canHScroll || canVScroll)
+            if (!AutoSize && (canHScroll || canVScroll))
             {
                 bool willShowHScroll = CalculateNeedScroll(desiredSize.Width > clientSize.Width, ShowHorizontalScrollBar);
                 bool willShowVScroll = CalculateNeedScroll(desiredSize.Height > clientSize.Height, ShowVerticalScrollBar);
@@ -275,16 +292,22 @@ namespace GdiPresentation
             if (stopwatch != null)
                 ElementStatistics.AddEvent(ElementStatisticsEventType.Arrange | (force ? ElementStatisticsEventType.Forced : 0), stopwatch.Elapsed);
 
-            var displaySize = _host.Size;
+            if (AutoSize)
+            {
+                AdjustSize();
+                SetDisplaySize((System.Drawing.Size)_host.DesiredSize);
+            }
+            else
+            {
+                var displaySize = _host.Size;
 
-            OnPreferredSizeChanged(new PreferredSizeChangedEventArgs(displaySize));
+                if (!canHScroll)
+                    displaySize.Width = Math.Min(displaySize.Width, clientSize.Width);
+                if (!canVScroll)
+                    displaySize.Height = Math.Min(displaySize.Height, clientSize.Height);
 
-            if (!canHScroll)
-                displaySize.Width = Math.Min(displaySize.Width, clientSize.Width);
-            if (!canVScroll)
-                displaySize.Height = Math.Min(displaySize.Height, clientSize.Height);
-
-            SetDisplaySize((System.Drawing.Size)displaySize);
+                SetDisplaySize((System.Drawing.Size)displaySize);
+            }
 
             // Under certain circumstances, when the size of the content shrunk,
             // we need to specifically invalidate the area that became visible
@@ -573,6 +596,12 @@ namespace GdiPresentation
             }
 
             base.Select(directed, forward);
+        }
+
+        private void AdjustSize()
+        {
+            if (AutoSize)
+                Size = (System.Drawing.Size)_host.DesiredSize;
         }
 
         private class WheelMessageFilter : IMessageFilter

@@ -8,7 +8,8 @@ namespace GdiPresentation.Demo
     [DisplayName("Visibility")]
     internal class ChangeVisibilityDemo : ElementDemo
     {
-        private Border _border;
+        private Border _border1;
+        private Border _border2;
 
         public override System.Windows.Forms.ScrollBars AllowedScrollBars
         {
@@ -50,7 +51,14 @@ namespace GdiPresentation.Demo
 
             collapsedButton.MouseUp += (s, e) => SetState(Visibility.Collapsed);
 
-            _border = new Border
+            _border1 = new Border
+            {
+                Background = Brush.Yellow,
+                Content = new TextBlock("Collapsing element"),
+                Margin = new Thickness(3)
+            };
+
+            _border2 = new Border
             {
                 Background = Brush.Yellow,
                 Content = new TextBlock("Collapsing element"),
@@ -82,7 +90,7 @@ namespace GdiPresentation.Demo
                     {
                         Children =
                         {
-                            _border,
+                            _border1,
                             new Border
                             {
                                 Background = Brush.Yellow,
@@ -97,13 +105,15 @@ namespace GdiPresentation.Demo
                         Margin = new Thickness(3),
                         MinHeight = 10
                     },
+                    _border2
                 }
             };
         }
 
         private void SetState(Visibility visibility)
         {
-            _border.Visibility = visibility;
+            _border1.Visibility = visibility;
+            _border2.Visibility = visibility;
         }
     }
 }
