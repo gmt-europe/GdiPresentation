@@ -214,7 +214,7 @@ namespace GdiPresentation
                 RaiseMouseEnter(new ElementEventArgs());
             }
 
-            Parent.RegisterMouseOver(this);
+            Parent?.RegisterMouseOver(this);
 
             OnMouseMove(e);
         }
