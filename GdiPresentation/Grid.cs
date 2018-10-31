@@ -279,13 +279,19 @@ namespace GdiPresentation
                             continue;
                     }
 
-                    for (int r = row; r < row + rowspan; r++)
+                    if (child_size.Height < int.MaxValue)
                     {
-                        child_size.Height += row_matrix[r,r].offered_size;
+                        for (int r = row; r < row + rowspan; r++)
+                        {
+                            child_size.Height += row_matrix[r, r].offered_size;
+                        }
                     }
-                    for (int c = col; c < col + colspan; c++)
+                    if (child_size.Width < int.MaxValue)
                     {
-                        child_size.Width += col_matrix[c,c].offered_size;
+                        for (int c = col; c < col + colspan; c++)
+                        {
+                            child_size.Width += col_matrix[c, c].offered_size;
+                        }
                     }
 
                     child.Measure(child_size);
